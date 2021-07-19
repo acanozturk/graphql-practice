@@ -5,6 +5,6 @@ import lombok.Data;
 @Data
 public abstract class AbstractBaseResponse {
 
-    private String message = "true";
+    private String message;
 
 }

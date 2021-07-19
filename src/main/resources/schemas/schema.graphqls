@@ -1,9 +1,21 @@
 type Query {
     getCustomerByIdRequest(request: getCustomerByIdRequest): GetCustomerByIdResponse
+    getCustomersSortedAndPaginatedRequest(request: getCustomersSortedAndPaginatedRequest): GetCustomersSortedAndPaginatedResponse
+}
+
+input getCustomersSortedAndPaginatedRequest {
+    pageNo: Int
+    pageSize: Int
+    sortBy: String
+    sortDirection: String
 }
 
 input getCustomerByIdRequest {
     id: Int
+}
+type GetCustomersSortedAndPaginatedResponse {
+    count: Int
+    customers: [Customer]
 }
 
 type GetCustomerByIdResponse {
@@ -15,7 +27,6 @@ type Customer {
      lastName: String
      email: String
      address: Address
-
 }
 
 type Address {
@@ -23,3 +34,4 @@ type Address {
     city: String
     zip: String
 }
+

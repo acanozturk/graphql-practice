@@ -7,6 +7,6 @@ import java.util.List;
 public interface CustomerService {
 
     Customer getCustomerById(Integer id);
-    List<Customer> getCustomersPaginatedAndSorted(Integer pageNo, Integer pageSize, String sortBy, String sortDirection);
+    List<Customer> getCustomersSortedAndPaginated(Integer pageNo, Integer pageSize, String sortBy, String sortDirection);
 
 }
