@@ -1,4 +1,4 @@
-package com.practice.graphql.api.queries;
+package com.practice.graphql.queries;
 
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
 import com.practice.graphql.api.dtos.Customer;
