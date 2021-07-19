@@ -5,5 +5,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class ExceptionResponse extends AbstractBaseResponse {
+public class GetCustomersPaginatedAndSortedResponse extends AbstractGetAllResponse {
+
 }
