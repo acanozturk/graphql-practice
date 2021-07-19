@@ -33,7 +33,7 @@ public class Bootloader implements CommandLineRunner {
     private void addressLoader() {
         final List<AddressEntity> addressEntities = new ArrayList<>();
 
-        for(int i=0; i<500; i++) {
+        for(int i=0; i<100; i++) {
             final AddressEntity addressEntity = new AddressEntity();
 
             addressEntity.setCountry(mockNeat.countries().valStr());
@@ -49,7 +49,7 @@ public class Bootloader implements CommandLineRunner {
     private void customerLoader() {
         final List<CustomerEntity> customerEntities = new ArrayList<>();
 
-        for(int i=0; i<500; i++) {
+        for(int i=0; i<100; i++) {
             final CustomerEntity customerEntity = new CustomerEntity();
             final List<AddressEntity> addressEntities = addressRepository.findAll();
 
@@ -63,4 +63,5 @@ public class Bootloader implements CommandLineRunner {
 
         customerRepository.saveAll(customerEntities);
     }
+
 }
