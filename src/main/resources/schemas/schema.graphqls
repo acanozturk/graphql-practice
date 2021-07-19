@@ -1,3 +1,25 @@
 type Query {
-    testQuery: String
+    getCustomerByIdRequest(request: getCustomerByIdRequest): GetCustomerByIdResponse
+}
+
+input getCustomerByIdRequest {
+    id: Int
+}
+
+type GetCustomerByIdResponse {
+    customer: Customer
+}
+
+type Customer {
+     firstName: String
+     lastName: String
+     email: String
+     address: Address
+
+}
+
+type Address {
+    country: String
+    city: String
+    zip: String
 }
