@@ -4,21 +4,25 @@ type Query {
 }
 
 input getCustomersSortedAndPaginatedRequest {
-    pageNo: Int
-    pageSize: Int
-    sortBy: String
-    sortDirection: String
+    pageNo: Int!
+    pageSize: Int!
+    sortBy: String!
+    sortDirection: String!
 }
 
 input getCustomerByIdRequest {
-    id: Int
+    id: Int!
 }
 type GetCustomersSortedAndPaginatedResponse {
+    message: String
+    timestamp: String
     count: Int
     customers: [Customer]
 }
 
 type GetCustomerByIdResponse {
+    message: String
+    timestamp: String
     customer: Customer
 }
 

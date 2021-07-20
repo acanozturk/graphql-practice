@@ -34,7 +34,6 @@ public class CustomerServiceImpl implements CustomerService {
                                                          final String sortBy, final String sortDirection) {
 
         final Pageable page = PageRequest.of(pageNo - 1, pageSize, Sort.Direction.valueOf(sortDirection), sortBy);
-
         final List<CustomerEntity> customerEntities = customerRepository.findAll(page).getContent();
 
         return customerEntities
