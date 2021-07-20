@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,7 +27,7 @@ public class CustomerServiceImpl implements CustomerService {
     public Customer getCustomerById(final Integer id) {
         final CustomerEntity customerEntity = customerRepository.findCustomerEntityById(id);
 
-        return setCustomerAddress(customerEntity);
+        return setCustomerAddressOne(customerEntity);
     }
 
     @Override
@@ -36,13 +37,21 @@ public class CustomerServiceImpl implements CustomerService {
         final Pageable page = PageRequest.of(pageNo - 1, pageSize, Sort.Direction.valueOf(sortDirection), sortBy);
         final List<CustomerEntity> customerEntities = customerRepository.findAll(page).getContent();
 
-        return customerEntities
-                .stream()
-                .map(this::setCustomerAddress)
-                .collect(Collectors.toList());
+        return setCustomerAddressMultiple(customerEntities);
     }
 
-    private Customer setCustomerAddress(final CustomerEntity customerEntity) {
+    @Override
+    public List<Customer> getCustomersByCity(final List<String> cities) {
+        final List<CustomerEntity> customerEntities = new ArrayList<>();
+
+        for(String city : cities) {
+            customerEntities.addAll(customerRepository.findCustomerEntityByAddressEntity_CityOrderByFirstName(city));
+        }
+
+        return setCustomerAddressMultiple(customerEntities);
+    }
+
+    private Customer setCustomerAddressOne(final CustomerEntity customerEntity) {
         final Address address = addressService.getAddressById(customerEntity.getAddressEntity().getId());
         final Customer customer = customerMapper.customerEntityToCustomerDTO(customerEntity);
 
@@ -50,4 +59,13 @@ public class CustomerServiceImpl implements CustomerService {
 
         return customer;
     }
+
+    private List<Customer> setCustomerAddressMultiple(final List<CustomerEntity> customerEntities) {
+
+        return customerEntities
+                .stream()
+                .map(this::setCustomerAddressOne)
+                .collect(Collectors.toList());
+    }
+
 }

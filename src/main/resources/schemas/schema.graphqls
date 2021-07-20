@@ -1,6 +1,11 @@
 type Query {
     getCustomerByIdRequest(request: getCustomerByIdRequest): GetCustomerByIdResponse
     getCustomersSortedAndPaginatedRequest(request: getCustomersSortedAndPaginatedRequest): GetCustomersSortedAndPaginatedResponse
+    getCustomersByCityRequest(request: getCustomersByCityRequest): GetCustomersByCityRequest
+}
+
+input getCustomerByIdRequest {
+    id: Int!
 }
 
 input getCustomersSortedAndPaginatedRequest {
@@ -10,9 +15,16 @@ input getCustomersSortedAndPaginatedRequest {
     sortDirection: String!
 }
 
-input getCustomerByIdRequest {
-    id: Int!
+input getCustomersByCityRequest {
+    cities: [String!]
 }
+
+type GetCustomerByIdResponse {
+    message: String
+    timestamp: String
+    customer: Customer
+}
+
 type GetCustomersSortedAndPaginatedResponse {
     message: String
     timestamp: String
@@ -20,10 +32,11 @@ type GetCustomersSortedAndPaginatedResponse {
     customers: [Customer]
 }
 
-type GetCustomerByIdResponse {
+type GetCustomersByCityRequest {
     message: String
     timestamp: String
-    customer: Customer
+    count: Int
+    customers: [Customer]
 }
 
 type Customer {
