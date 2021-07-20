@@ -11,7 +11,6 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -19,10 +18,12 @@ import java.util.List;
 @Slf4j
 public class Bootloader implements CommandLineRunner {
 
-    private final AddressRepository addressRepository;
-    private final CustomerRepository customerRepository;
+    private static final Integer RECORD_COUNT = 1000;
 
     private final MockNeat mockNeat = MockNeat.threadLocal();
+
+    private final AddressRepository addressRepository;
+    private final CustomerRepository customerRepository;
 
     @Override
     public void run(String... args) {
@@ -32,25 +33,19 @@ public class Bootloader implements CommandLineRunner {
     }
 
     private void addressLoader() {
-        final List<AddressEntity> addressEntities = new ArrayList<>();
-
-        for(int i=0; i<100; i++) {
+        for(int i=0; i<RECORD_COUNT; i++) {
             final AddressEntity addressEntity = new AddressEntity();
 
             addressEntity.setCountry(mockNeat.countries().valStr());
             addressEntity.setCity(mockNeat.cities().capitals().valStr());
             addressEntity.setZip(mockNeat.ints().range(1000, 99999).valStr());
 
-            addressEntities.add(addressEntity);
+            addressRepository.save(addressEntity);
         }
-
-        addressRepository.saveAll(addressEntities);
     }
 
     private void customerLoader() {
-        final List<CustomerEntity> customerEntities = new ArrayList<>();
-
-        for(int i=0; i<100; i++) {
+        for(int i=0; i<RECORD_COUNT; i++) {
             final CustomerEntity customerEntity = new CustomerEntity();
             final List<AddressEntity> addressEntities = addressRepository.findAll();
 
@@ -63,10 +58,8 @@ public class Bootloader implements CommandLineRunner {
             customerEntity.setEmail(mockNeat.emails().valStr());
             customerEntity.setAddressEntity(addressEntities.get(i));
 
-            customerEntities.add(customerEntity);
+            customerRepository.save(customerEntity);
         }
-
-        customerRepository.saveAll(customerEntities);
     }
 
 }
