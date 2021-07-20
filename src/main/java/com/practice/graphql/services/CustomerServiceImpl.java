@@ -3,6 +3,7 @@ package com.practice.graphql.services;
 import com.practice.graphql.api.dtos.Address;
 import com.practice.graphql.api.dtos.Customer;
 import com.practice.graphql.api.mappers.CustomerMapper;
+import com.practice.graphql.entities.AddressEntity;
 import com.practice.graphql.entities.CustomerEntity;
 import com.practice.graphql.repositories.CustomerRepository;
 import lombok.AllArgsConstructor;
@@ -49,6 +50,21 @@ public class CustomerServiceImpl implements CustomerService {
         }
 
         return setCustomerAddressMultiple(customerEntities);
+    }
+
+    @Override
+    public void createCustomer(final String firstName, final String lastName, final String birthday,
+                               final String email, final AddressEntity addressEntity) {
+
+        final CustomerEntity customerEntity = new CustomerEntity();
+
+        customerEntity.setFirstName(firstName);
+        customerEntity.setLastName(lastName);
+        customerEntity.setBirthday(birthday);
+        customerEntity.setEmail(email);
+        customerEntity.setAddressEntity(addressEntity);
+
+        customerRepository.save(customerEntity);
     }
 
     private Customer setCustomerAddressOne(final CustomerEntity customerEntity) {

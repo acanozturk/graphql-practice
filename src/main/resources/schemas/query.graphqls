@@ -1,21 +1,21 @@
 type Query {
-    getCustomerByIdRequest(request: getCustomerByIdRequest): GetCustomerByIdResponse
-    getCustomersSortedAndPaginatedRequest(request: getCustomersSortedAndPaginatedRequest): GetCustomersSortedAndPaginatedResponse
-    getCustomersByCityRequest(request: getCustomersByCityRequest): GetCustomersByCityRequest
+    getCustomerByIdRequest(request: GetCustomerByIdRequest): GetCustomerByIdResponse
+    getCustomersSortedAndPaginatedRequest(request: GetCustomersSortedAndPaginatedRequest): GetCustomersSortedAndPaginatedResponse
+    getCustomersByCityRequest(request: GetCustomersByCityRequest): GetCustomersByCityResponse
 }
 
-input getCustomerByIdRequest {
+input GetCustomerByIdRequest {
     id: Int!
 }
 
-input getCustomersSortedAndPaginatedRequest {
+input GetCustomersSortedAndPaginatedRequest {
     pageNo: Int!
     pageSize: Int!
     sortBy: String!
     sortDirection: String!
 }
 
-input getCustomersByCityRequest {
+input GetCustomersByCityRequest {
     cities: [String!]
 }
 
@@ -32,7 +32,7 @@ type GetCustomersSortedAndPaginatedResponse {
     customers: [Customer]
 }
 
-type GetCustomersByCityRequest {
+type GetCustomersByCityResponse {
     message: String
     timestamp: String
     count: Int

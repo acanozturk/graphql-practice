@@ -18,7 +18,7 @@ import java.util.List;
 @Slf4j
 public class Bootloader implements CommandLineRunner {
 
-    private static final Integer RECORD_COUNT = 1000;
+    private static final Integer RECORD_COUNT = 500;
 
     private final MockNeat mockNeat = MockNeat.threadLocal();
 

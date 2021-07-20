@@ -20,4 +20,17 @@ public class AddressServiceImpl implements AddressService {
 
         return addressMapper.addressEntityToAddressDTO(addressEntity);
     }
+
+    @Override
+    public AddressEntity createAddress(final String country, final String city, final String zip) {
+        final AddressEntity addressEntity = new AddressEntity();
+
+        addressEntity.setCountry(country);
+        addressEntity.setCity(city);
+        addressEntity.setZip(zip);
+
+        addressRepository.save(addressEntity);
+
+        return addressEntity;
+    }
 }

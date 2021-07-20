@@ -1,0 +1,22 @@
+type Mutation {
+    createCustomerRequest(request: CreateCustomerRequest): CreateCustomerResponse
+}
+
+input CreateCustomerRequest {
+    firstName: String!
+    lastName: String!
+    birthday: String!
+    email: String!
+    country: String!
+    city: String!
+    zip: String!
+}
+
+type CreateCustomerResponse {
+    message: String
+    timestamp: String
+}
+
+
+
+
