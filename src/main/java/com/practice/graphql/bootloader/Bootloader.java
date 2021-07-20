@@ -10,6 +10,7 @@ import net.andreinc.mockneat.MockNeat;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -55,6 +56,10 @@ public class Bootloader implements CommandLineRunner {
 
             customerEntity.setFirstName(mockNeat.names().first().valStr());
             customerEntity.setLastName(mockNeat.names().last().valStr());
+            customerEntity.setBirthday(mockNeat.localDates().between(
+                    LocalDate.of(1900,1,1),
+                    LocalDate.of(2003,12,31))
+                    .valStr());
             customerEntity.setEmail(mockNeat.emails().valStr());
             customerEntity.setAddressEntity(addressEntities.get(i));
 

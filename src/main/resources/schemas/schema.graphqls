@@ -27,10 +27,11 @@ type GetCustomerByIdResponse {
 }
 
 type Customer {
-     firstName: String
-     lastName: String
-     email: String
-     address: Address
+    firstName: String
+    lastName: String
+    birthday: String
+    email: String
+    address: Address
 }
 
 type Address {

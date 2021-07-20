@@ -19,6 +19,8 @@ public class CustomerEntity extends AbstractBaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    private String birthday;
+
     private String email;
 
     @OneToOne

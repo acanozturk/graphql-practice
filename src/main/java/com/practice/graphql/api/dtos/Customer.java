@@ -9,6 +9,7 @@ public class Customer extends AbstractBaseDTO {
 
     private String firstName;
     private String lastName;
+    private String birthday;
     private String email;
     private Address address;
 
