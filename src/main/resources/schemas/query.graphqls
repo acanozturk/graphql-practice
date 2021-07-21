@@ -40,6 +40,8 @@ type GetCustomersByCityResponse {
 }
 
 type Customer {
+    id: Int
+    createdAt: String
     firstName: String
     lastName: String
     birthday: String
@@ -48,6 +50,8 @@ type Customer {
 }
 
 type Address {
+    id: Int
+    createdAt: String
     country: String
     city: String
     zip: String

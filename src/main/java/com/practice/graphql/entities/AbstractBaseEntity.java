@@ -2,11 +2,10 @@ package com.practice.graphql.entities;
 
 import lombok.Data;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
-import java.time.Instant;
+import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.ZonedDateTime;
+import java.time.temporal.ChronoUnit;
 
 @Data
 @MappedSuperclass
@@ -16,6 +15,7 @@ public abstract class AbstractBaseEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    private String created_at = Instant.now().toString();
+    @Column(name = "created_at")
+    private String createdAt = Timestamp.from(ZonedDateTime.now().toInstant().truncatedTo(ChronoUnit.SECONDS)).toString();
 
 }

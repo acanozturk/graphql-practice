@@ -6,5 +6,6 @@ import lombok.Data;
 public abstract class AbstractBaseDTO {
 
     private Integer id;
+    private String createdAt;
 
 }

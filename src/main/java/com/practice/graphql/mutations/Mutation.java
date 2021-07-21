@@ -1,6 +1,7 @@
 package com.practice.graphql.mutations;
 
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
+import com.practice.graphql.api.dtos.Address;
 import com.practice.graphql.api.dtos.Customer;
 import com.practice.graphql.api.requests.CreateCustomerRequest;
 import com.practice.graphql.api.responses.CreateCustomerResponse;
@@ -8,6 +9,7 @@ import com.practice.graphql.entities.AddressEntity;
 import com.practice.graphql.services.AddressService;
 import com.practice.graphql.services.CustomerService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -36,5 +38,7 @@ public class Mutation implements GraphQLMutationResolver {
 
         return response;
     }
+
+
 
 }
